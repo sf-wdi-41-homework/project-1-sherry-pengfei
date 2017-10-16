@@ -11,9 +11,17 @@ app.use(express.static('public'));
 // body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+
 app.get('/', function(req, res){
- res.sendFile('public/index.html', {root: __dirname});
+ res.sendFile('views/index.html', {root: __dirname});
 });
+
+app.get('/destination', function(req, res){
+  
+})
+
+
 
 
 app.listen(process.env.PORT || 3000, function () {
