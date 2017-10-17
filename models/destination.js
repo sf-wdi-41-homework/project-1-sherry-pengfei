@@ -1,17 +1,15 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-var DesitnationSchema = new Schema({
+var DestinationSchema = new Schema({
     location: String,
     date: String,
     budget: Number,
-    author: {
-      type: Schema.Types.ObjectId,
-      ref: 'Author'
-    },
+    currency: String,
+    Author: String,
     plans: [String],
   });
 
-  var Desitnation = mongoose.model('Desitnation',DesitnationSchema);
+  var Destination = mongoose.model('Destination',DestinationSchema);
 
-  module.exports = Desitnation;
+  module.exports = Destination;
