@@ -1,7 +1,9 @@
 var express = require('express'),
   bodyParser = require('body-parser'),
-  db = require('./modules');
-  controller = require('./controller')
+  db = require('./models'),
+  controller = require('./controller'),
+  session = require('express-session');
+
 
 // generate a new express app and call it 'app'
 var app = express();
@@ -9,12 +11,22 @@ var app = express();
 // serve static files in public
 app.use(express.static('public'));
 
+// Express Session Middleware
+app.use(session({
+ secret: 'secret',
+ resave: true,
+ saveUninitialized: true
+}));
+
 // body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
+
+
 app.get('/', function(req, res){
+  // where is the views folder?
  res.sendFile('views/index.html', {root: __dirname});
 });
 
@@ -49,6 +61,56 @@ app.delete('/destination/:id', function(req, res){
     res.json(destroy);
   })
 })
+
+
+//user registration
+app.get('/users/register', function(req, res){
+  res.sendFile('views/register.html', {root: __dirname});
+});
+
+//register proccess
+app.post('/users/register', function(req, res){
+  console.log('testing');
+
+  const name = req.body.name;
+  const email = req.body.email;
+  const username = req.body.username;
+  const password = req.body.password;
+  const password2 = req.body.password2;
+
+  let newUser = new User({
+    name:name,
+    email:email,
+    username:username,
+    password:password
+  });
+
+  bcrypt.genSalt(10, function(err, salt){
+      bcrypt.hash(newUser.password, salt, function(err, hash){
+          if(err){
+              console.log(err);
+          } else {
+              newUser.password = hash;
+              newUser.save(function(err){
+                  if(err){
+                      console.log(err);
+                      return;
+                  } else {
+                      console.log("user is now logged in...");
+                      res.redirect(307,'/users/login');
+                  }
+              });
+          }
+      });
+  });
+});
+
+app.get('/users/login', function(req,res){
+  res.sendFile('views/login.html', {root: __dirname});
+});
+
+
+
 
 
 
