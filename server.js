@@ -2,7 +2,10 @@ var express = require('express'),
   bodyParser = require('body-parser'),
   db = require('./models'),
   controller = require('./controller'),
-  session = require('express-session');
+  session = require('express-session'),
+  bcrypt = require('bcryptjs'),
+  passport = require('passport');
+
 
 
 // generate a new express app and call it 'app'
@@ -78,7 +81,7 @@ app.post('/users/register', function(req, res){
   const password = req.body.password;
   const password2 = req.body.password2;
 
-  let newUser = new User({
+  let newUser = new db.User({
     name:name,
     email:email,
     username:username,
@@ -97,7 +100,7 @@ app.post('/users/register', function(req, res){
                       return;
                   } else {
                       console.log("user is now logged in...");
-                      res.redirect(307,'/users/login');
+                      res.redirect('/users/login');
                   }
               });
           }
