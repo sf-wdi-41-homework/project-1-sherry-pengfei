@@ -3,3 +3,5 @@ mongoose.connect( process.env.MONGODB_URI ||"mongodb://localhost/Project-1", {us
 
 
 module.exports.Destination = require("./destination.js");
+
+module.exports.User = require('./user.js');
