@@ -1,60 +1,11 @@
 $(document).ready(function(){
   console.log("sanity check");
 
+  var destination=[];
 
-function getData(){
-
-  $.ajax({
-    method: 'GET',
-    url: '/api/serverData',
-    success: handleSuccess,
-    error: handleError
-  });
-}
-
-function handleSuccess(response){
-   let data = response;
-   let output =``;
-   for(var i =0; i<data.length; i++){
-     let location = data[i].location;
-     let budget = data[i].budget;
-     let date = data[i].date;
-     let author = data[i].author;
-     output += `
-          <div id= "outputHTML">
-          <p><strong>Destination </strong>${i +1}</p>
-          <hr>
-          <p><strong>Author: </strong>${author}</p>
-          <p><strong>Location: </strong>${location}</p>
-          <p><strong>Butget: </strong>${budget}</p>
-          <p><strong>Date: </strong>${date}</p>
-          <p><strong>Plans: </strong></p>
-     `;
-
-     let plans = data[i].plans;
-     for(var x=0; x<plans.length; x ++){
-        var todo = plans[x];
-        output +=`
-          <p><strong>${x+1} </strong>${todo}</p>
-
-        `;
-     }
-     output += `</div>`;
-
-   }
-   document.getElementById('htmlTarget').innerHTML = output;
-
- }
-
- function handleError(error){
-
-   console.log(error);
- }
-
-
-  $('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').focus()
-})
+      $('#myModal').on('shown.bs.modal', function () {
+      $('#myInput').focus()
+  })
 
 //print destination data base on #htmlTarget
    $.ajax({
@@ -66,37 +17,114 @@ function handleSuccess(response){
 
 
 
-   function getDestination(destination){
-     var renderedHTML = '';
-     console.log(destination);
-     renderedHTML += `<hr>
-             <div class="row">
-             <div class="col-md-6 col-md-offset-3 location">
-             <div class="col-md-10">
-             <p>Location: ${destination.location}</p>
-             <p>Date: ${destination.date}</p>
-             <p>Budget: $ ${destination.budget}</p>
-             <p>Plans:</p>
-             <ul>`
-     for(var i = 0; i<destination.plans.length; i++){
-       var todo = destination.plans[i];
-       renderedHTML += `<li>${todo}</li>`
+   // function getDestination(destination){
+   //   var renderedHTML = '';
+   //   console.log(destination);
+   //   renderedHTML += `<hr>
+   //           <div class="row">
+   //           <div class="col-md-6 col-md-offset-3 location">
+   //           <div class="col-md-10">
+   //           <p>Location: ${destination.location}</p>
+   //           <p>Date: ${destination.date}</p>
+   //           <p>Budget: $ ${destination.budget}</p>
+   //           <p>Plans:</p>
+   //           <ul>`
+   //   for(var i = 0; i<destination.plans.length; i++){
+   //     var todo = destination.plans[i];
+   //     renderedHTML += `<li>${todo}</li>`
 
-      }
-      renderedHTML +=
-      `</ul>
-      </div>
-      <div class="col-md-2">
-      <button type="button" class="deleteBtn btn btn-danger" data-id=${destination._id}>Delete</button>
-      </div>
-      </div>
-      </div>`
-     return renderedHTML;
-   }
+   //    }
+   //    renderedHTML +=
+   //    `</ul>
+   //    </div>
+   //    <div class="col-md-2">
+   //    <button type="button" class="deleteBtn btn btn-danger" data-id=${destination._id}>Delete</button>
+   //    </div>
+   //    </div>
+   //    </div>`
+   //   return renderedHTML;
+   // }
 
    function getDestinationHTML(destination){
      return destination.map(getDestination)
    }
+
+
+function getDestination(destination){
+    var renderedHTML = '';
+    console.log(destination);
+    renderedHTML += `<hr>
+            <div class="row">
+            <div class="col-md-6 col-md-offset-3 location">
+            <div class="col-md-12">
+            <div class="col-md-10">
+            <p class="location">Location: ${destination.location}</p>
+            </div>
+            <div class="col-md-2">
+            <a href="javascript:void(0)" data-toggle="modal" data-target="#editLocation">
+                   <span class="glyphicon glyphicon-pencil"></span>
+                 </a>
+            <div id="editLocation" class="modal fade" role="dialog" >
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <form id="locationForm" data-id="${destination._id}" >
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input type="text" name="updateLocation" class="form-control" value="${destination.location}">
+                            </div>
+                            <div class="modal-footer">
+                                 <p class="updateSuccess" style= "color: green"></p>
+                                <button type="submit" class="btn btn-primary" data-id="${destination._id}">Update</button>
+                                <button type="button" class=" btn btn-default" id="updateClose" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+            <p>Date: ${destination.date}</p>
+            <p>Budget: $ ${destination.budget}</p>
+            <p>Plans:</p>
+            <ul>`
+    for(var i = 0; i<destination.plans.length; i++){
+      var todo = destination.plans[i];
+      var modalTarget = destination._id+i
+      renderedHTML += `<li>${todo} </li>`
+
+     }
+     renderedHTML +=
+     `</ul>
+     </div>
+     <div class="pull-right col-md-12">
+     <button type="button" class="deleteBtn btn btn-danger" data-id="${destination._id}">Delete</button>
+     </div>
+     </div>
+     </div>`
+    return renderedHTML;
+  }
+
+
+
+      $("#htmlTarget").on("submit", "#locationForm", function(event){
+         event.preventDefault();
+        var updateId= $(this).data().id;
+        console.log($(this).attr('data-id'))
+         $.ajax({
+           method: "PUT",
+           url: '/destination/'+$(this).attr('data-id'),
+           data: $(this).serialize(),
+           success: function updateLocation(json){
+             destination.splice(destination.indexOf(updateId), 1, json)
+             reload()
+           },
+           error: handleError
+         })
+       });
+
+
 
 
    $("#htmlTarget").on("click", ".deleteBtn", function(event){
@@ -131,15 +159,16 @@ function handleSuccess(response){
          $("#createTrip input").val("");
          reload();
        },
-       error: function(a,b,c){console.log(a,b,c)}
+       error: function(a,b,c){console.log(a,b,c)} 
      })
    })
 
 
-   function reload(){
+function reload(){
      $('#htmlTarget').empty();
      $('#htmlTarget').append(getDestinationHTML(destination))
-   }
+     $('.modal-backdrop').remove();
+   };
 
   function handleSuccess(response){
     destination=response;
