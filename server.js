@@ -32,7 +32,7 @@ app.use(passport.session());
 
 app.get('*', function(req, res, next){
 
-  res.local.user = req.user || null ;
+  res.locals.user = req.user || null ;
   next();
 });
 
