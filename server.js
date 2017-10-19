@@ -30,6 +30,12 @@ require('./config/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.get('*', function(req, res, next){
+
+  res.local.user = req.user || null ;
+  next();
+});
+
 
 
 app.get('/', function(req, res){
