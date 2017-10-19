@@ -76,6 +76,16 @@ app.delete('/destination/:id', function(req, res){
 })
 
 
+app.put('/destination/:id', function(req, res){
+  db.Destination.findOne({_id:req.params.id}, function(err,success){
+    success.location=req.body.updateLocation;
+    success.save(function(err, update){
+      res.json(update)
+    })
+  })
+});
+
+
 //user registration
 app.get('/users/register', function(req, res){
   res.sendFile('views/register.html', {root: __dirname});
@@ -91,7 +101,7 @@ app.post('/users/register', function(req, res){
   const password = req.body.password;
   const password2 = req.body.password2;
 
-  let newUser = new db.User({
+  var newUser = new db.User({
     name:name,
     email:email,
     username:username,
@@ -132,6 +142,8 @@ app.post('/users/login', function(req, res, next){
 
     })(req, res, next);
 });
+
+
 
 
 
