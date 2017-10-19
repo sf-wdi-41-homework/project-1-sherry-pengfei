@@ -1,6 +1,20 @@
 body{
   background-image: url("./../images/travel8.jpeg");
   background-repeat: none;
-  background-position: cover;
+  background-size: cover;
+
   
+}
+
+/*html { 
+background: url("./../images/travel8.jpeg") no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}*/
+
+.col-md-12{
+	background-color: white;
+	opacity:.7;
 }

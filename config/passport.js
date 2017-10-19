@@ -3,6 +3,7 @@ var LocalStrategy = require("passport-local").Strategy;
 var User = require('../models/user');
 var config = require('../config/database');
 var bcrypt = require('bcryptjs');
+var flash = require('flash');
 
 module.exports = function(passport){
 	// local strategy
@@ -12,7 +13,7 @@ module.exports = function(passport){
 		User.findOne(query, function(err, user){
 			if(err) throw err;
 			if(!user){
-				return done(null, false, {message : 'no user found'});
+				return done(null, false, {message: flash('no user found')});
 			}
 
 			//match password
@@ -21,7 +22,7 @@ module.exports = function(passport){
 				if(isMatch){
 					return done(null, user);
 				}else{
-					return done(null, false, {message: 'wrong password'});
+					return done(null, false, {message: flash('wrong password')});
 				}
 			});
 		});
