@@ -24,7 +24,11 @@ app.use(session({
 // body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
 
+require('./config/passport')(passport);
 
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 
@@ -99,7 +103,7 @@ app.post('/users/register', function(req, res){
                       console.log(err);
                       return;
                   } else {
-                      console.log("user is now logged in...");
+                      console.log("user has been created..");
                       res.redirect('/users/login');
                   }
               });
@@ -110,6 +114,17 @@ app.post('/users/register', function(req, res){
 
 app.get('/users/login', function(req,res){
   res.sendFile('views/login.html', {root: __dirname});
+});
+
+
+// login Process
+app.post('/users/login', function(req, res, next){
+    passport.authenticate('local', {
+      successRedirect:'/',
+      failureRedirect:'/users/login',
+      failureFlash:true
+
+    })(req, res, next);
 });
 
 
