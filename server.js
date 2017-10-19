@@ -4,7 +4,8 @@ var express = require('express'),
   controller = require('./controller'),
   session = require('express-session'),
   bcrypt = require('bcryptjs'),
-  passport = require('passport');
+  passport = require('passport'),
+  flash = require('flash');
 
 
 
