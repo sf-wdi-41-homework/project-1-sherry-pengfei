@@ -57,6 +57,7 @@ app.post('/destination', function(req, res){
 
   console.log(req.body);
   var newDestination = new db.Destination({
+    organizer: req.body.organizer,
     location: req.body.location,
     date: req.body.date,
     budget: req.body.budget,
@@ -76,15 +77,21 @@ app.delete('/destination/:id', function(req, res){
   })
 })
 
-
+//update Location
 app.put('/destination/:id', function(req, res){
   db.Destination.findOne({_id:req.params.id}, function(err,success){
+    success.organizer=req.body.updateOrganizer;
     success.location=req.body.updateLocation;
+    success.date = req.body.updateDate;
+    success.budget = req.body.updateBudget;
+    success.plans = req.body.updatePlans.split(',').map(function(item) { return item.trim(); } );
     success.save(function(err, update){
+      if(err){return}
       res.json(update)
     })
   })
 });
+
 
 
 //user registration
