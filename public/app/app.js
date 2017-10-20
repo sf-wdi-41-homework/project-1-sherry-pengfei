@@ -1,6 +1,83 @@
 $(document).ready(function(){
   console.log("sanity check");
 
+
+//map
+// function initMap(){
+//   var map = new google.maps.Map(document.getElementById('map'), {
+//     center: {lat: -33.8688, lng: 151.2195},
+//     zoom: 13
+//   });
+//   var card = document.getElementById('pac-card');
+//   var input = document.getElementById('pac-input');
+//   var types = document.getElementById('type-selector');
+//   var strictBounds = document.getElementById('strict-bounds-selector');
+//
+//   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+//
+//   var autocomplete = new google.maps.places.Autocomplete(input);
+//
+//   // Bind the map's bounds (viewport) property to the autocomplete object,
+//   // so that the autocomplete requests use the current map bounds for the
+//   // bounds option in the request.
+//   autocomplete.bindTo('bounds', map);
+//
+//   var infowindow = new google.maps.InfoWindow();
+//   var infowindowContent = document.getElementById('infowindow-content');
+//   infowindow.setContent(infowindowContent);
+//   var marker = new google.maps.Marker({
+//     map: map,
+//     anchorPoint: new google.maps.Point(0, -29)
+//   });
+//
+//   autocomplete.addListener('place_changed', function() {
+//     infowindow.close();
+//     marker.setVisible(false);
+//     var place = autocomplete.getPlace();
+//     if (!place.geometry) {
+//       // User entered the name of a Place that was not suggested and
+//       // pressed the Enter key, or the Place Details request failed.
+//       window.alert("No details available for input: '" + place.name + "'");
+//       return;
+//     }
+//
+//     // If the place has a geometry, then present it on a map.
+//     if (place.geometry.viewport) {
+//       map.fitBounds(place.geometry.viewport);
+//     } else {
+//       map.setCenter(place.geometry.location);
+//       map.setZoom(20);
+//     }
+//     marker.setPosition(place.geometry.location);
+//     marker.setVisible(true);
+//
+//     var address = '';
+//     if (place.address_components) {
+//       address = [
+//         (place.address_components[0] && place.address_components[0].short_name || ''),
+//         (place.address_components[1] && place.address_components[1].short_name || ''),
+//         (place.address_components[2] && place.address_components[2].short_name || '')
+//       ].join(' ');
+//     }
+//
+//     infowindowContent.children['place-icon'].src = place.icon;
+//     infowindowContent.children['place-name'].textContent = place.name;
+//     infowindowContent.children['place-address'].textContent = address;
+//     infowindow.open(map, marker);
+//   });
+//
+// }
+//
+// initMap()
+//
+//show map in my modal
+// $("#myMap").on("shown.bs.modal", function () {
+//   google.maps.event.trigger(map, "resize");
+//   autocomplete;
+// });
+
+  ///////////////////////////////////////////////////////////////////////////////////////////////////
+
   var destination=[];
 
 
@@ -27,7 +104,7 @@ function getDestination(destination){
     var renderedHTML = '';
     console.log(destination);
     renderedHTML += `
-            <div class="row">
+            <div class="row col-md-10 col-sm-12 col- col-md-offset-1">
             <div class = "container col-md-6 col-md-offset-3 mainInfo">
             <div class="col-md-8 col-md-offset-2">
             <h3>${destination.organizer}</h3>
@@ -63,41 +140,41 @@ function getDestination(destination){
      <button type="button" class="deleteBtn btn btn-danger col-md-12" data-id="${destination._id}">Delete</button>
      </div>
      </div>
+     </div>
      <div id="${destination._id}" class="modal fade" role="dialog" >
-         <div class="modal-dialog">
+     <div class="modal-dialog">
 
-             <!-- Modal content-->
-             <div class="modal-content">
-                 <form id="editForm" data-id="${destination._id}" >
-                     <div class="form-group">
-                         <label for="organizer">Change Organizer</label>
-                         <input type="text" name="updateOrganizer" class="form-control" value="${destination.organizer}">
-                     </div>
-                     <div class="form-group">
-                         <label for="location">Change Location</label>
-                         <input type="text" name="updateLocation" class="form-control" value="${destination.location}">
-                     </div>
-                     <div class="form-group">
-                         <label for="date">Change Date</label>
-                         <input type="text" name="updateDate" class="form-control" value="${destination.date}">
-                     </div>
-                     <div class="form-group">
-                         <label for="budget">Change Budget</label>
-                         <input type="text" name="updateBudget" class="form-control" value="${destination.budget}">
-                     </div>
-                     <div class="form-group">
-                         <label for="plans">Change Plans</label>
-                         <input type="text" name="updatePlans" class="form-control" value="${destination.plans}">
-                     </div>
+     <!-- Modal content-->
+     <div class="modal-content">
+     <form id="editForm" data-id="${destination._id}" >
+     <div class="form-group">
+     <label for="organizer">Change Organizer</label>
+     <input type="text" name="updateOrganizer" class="form-control" value="${destination.organizer}">
+     </div>
+     <div class="form-group">
+     <label for="location">Change Location</label>
+     <input type="text" name="updateLocation" class="form-control" value="${destination.location}">
+     </div>
+     <div class="form-group">
+     <label for="date">Change Date</label>
+     <input type="text" name="updateDate" class="form-control" value="${destination.date}">
+     </div>
+     <div class="form-group">
+     <label for="budget">Change Budget</label>
+     <input type="text" name="updateBudget" class="form-control" value="${destination.budget}">
+     </div>
+     <div class="form-group">
+     <label for="plans">Change Plans</label>
+     <input type="text" name="updatePlans" class="form-control" value="${destination.plans}">
+     </div>
 
-                     <div class="modal-footer">
-                         <button type="submit" class="btn btn-primary" data-id="${destination._id}">Update</button>
-                         <button type="button" class=" btn btn-default" id="updateClose" data-dismiss="modal">Close</button>
-                     </div>
-                 </form>
+     <div class="modal-footer">
+     <button type="submit" class="btn btn-primary" data-id="${destination._id}">Update</button>
+     <button type="button" class=" btn btn-default" id="updateClose" data-dismiss="modal">Close</button>
+     </div>
+     </form>
 
-             </div>
-         </div>
+     </div>
      </div>
      </div>
      </div>
