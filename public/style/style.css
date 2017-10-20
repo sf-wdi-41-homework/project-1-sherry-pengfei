@@ -1,8 +1,8 @@
 body{
   background-image: url("./../images/travel8.jpeg");
   background-repeat: none;
+  background-size: cover;
   background-position: cover;
-
 }
 
 .mainInfo{
@@ -102,4 +102,17 @@ html, body {
   font-size: 25px;
   font-weight: 500;
   padding: 6px 12px;
+}
+
+/*html { 
+background: url("./../images/travel8.jpeg") no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}*/
+
+.col-md-12{
+	background-color: white;
+	opacity:.7;
 }

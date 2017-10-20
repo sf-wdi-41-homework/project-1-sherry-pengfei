@@ -1,10 +1,13 @@
 var express = require('express'),
-    bodyParser = require('body-parser'),
-    db = require('./models'),
-    controller = require('./controller'),
-    session = require('express-session'),
-    bcrypt = require('bcryptjs'),
-    passport = require('passport');
+
+  bodyParser = require('body-parser'),
+  db = require('./models'),
+  controller = require('./controller'),
+  session = require('express-session'),
+  bcrypt = require('bcryptjs'),
+  passport = require('passport'),
+  flash = require('flash');
+
 
 
 
