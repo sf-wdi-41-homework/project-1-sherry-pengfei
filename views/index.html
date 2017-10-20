@@ -19,34 +19,40 @@
 </head>
 
 <body>
+
     <nav class="navbar navbar-default navbar-fixed-top">
 
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Travel App</a>
+                <a class="navbar-brand" href="/">Travel App</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/users/login/">Login</a></li>
+                    <li><a href="#">Logout</a></li>
+                    <li class="active"><a href="/users/register">Sign Up <span class="sr-only">(current)</span></a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="/users/login/">Login</a></li>
-            <li><a href="#">Logout</a></li>
-            <li class="active"><a href="/users/register">Sign Up <span class="sr-only">(current)</span></a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
     </nav>
 
     <h1>Hello world</h1>
     <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Plan Trip</button>
+    <div class="col-md-12">
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myMap">Map</button>
+    </div>
 
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -69,11 +75,11 @@
                     </div>
                     <div class="form-group">
                         <label for="Trip Budget">Budget</label>
-                        <input type="number" name="budget" class="form-control"  placeholder="Your trip budget">
+                        <input type="number" name="budget" class="form-control" placeholder="Your trip budget">
                     </div>
                     <div class="form-group">
                         <label for="plans">Your Plans</label>
-                        <textarea class="form-control" name="plans" placeholder="Your plans for the trips. (break by commas)"rows="3"></textarea>
+                        <textarea class="form-control" name="plans" placeholder="Your plans for the trips. (break by commas)" rows="3"></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Create</button>
@@ -84,7 +90,32 @@
             </div>
         </div>
     </div>
+    <div id="myMap" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+
+            <div class="modal-content">
+                <div class="col-md-6 col-md-offset-3" id="map-container">
+                    <h3 class="text-center"> Checkout Your Destination Here
+                        <h3>
+                            <div class="pac-card" id="pac-card">
+                                <input id="pac-input" class="form-control" type="text" placeholder="Enter a location">
+
+                            </div>
+                            <div id="map"></div>
+                            <div id="infowindow-content">
+                                <img src="" width="16" height="16" id="place-icon">
+                                <span id="place-name" class="title"></span><br>
+                                <span id="place-address"></span>
+                            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="htmlTarget"></div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD457c0j22_gVCUN1CFmssOWA6twPe40-Q&libraries=places"></script>
 
 </body>
 

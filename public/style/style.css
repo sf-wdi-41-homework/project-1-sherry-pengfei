@@ -1,19 +1,107 @@
 body{
   background-image: url("./../images/travel8.jpeg");
   background-repeat: none;
-<<<<<<< HEAD
   background-size: cover;
-
-  
-=======
   background-position: cover;
-
 }
 
 .mainInfo{
   background-color: rgba(255,255,255,0.7);
   border-radius: 10px;
->>>>>>> afa3187798540a87a62948f04d9c5ce4a674b60b
+  margin-top:10px;
+}
+
+#createTrip{
+  padding: 20px;
+}
+
+.pac-container {
+        z-index: 10000 !important;
+    }
+
+#map-container{
+  background-color: rgba(255,255,255,0.7);
+  border-radius: 10px;
+  margin-top:10px;
+  width: 800px;
+}
+#map{
+  height: 400px;
+  margin: 20px;
+  border-radius: 10px;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#description {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+#infowindow-content .title {
+  font-weight: bold;
+}
+
+#infowindow-content {
+  display: none;
+}
+
+#map #infowindow-content {
+  display: inline;
+}
+
+.pac-card {
+  margin: 0 auto;
+  margin-left: 0;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  font-family: Roboto;
+}
+
+#pac-container {
+  padding-bottom: 12px;
+  margin-right: 12px;
+}
+
+.pac-controls {
+  display: inline-block;
+  padding: 5px 11px;
+}
+
+.pac-controls label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 0;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 400px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+#title {
+  color: #fff;
+  background-color: #4d90fe;
+  font-size: 25px;
+  font-weight: 500;
+  padding: 6px 12px;
 }
 
 /*html { 
