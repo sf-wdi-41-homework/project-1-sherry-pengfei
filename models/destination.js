@@ -6,7 +6,7 @@ var DestinationSchema = new Schema({
     date: String,
     budget: Number,
     currency: String,
-    Author: String,
+    organizer: String,
     plans: [String],
   });
 
