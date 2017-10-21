@@ -6,7 +6,7 @@ function destinations(req, res) {
 }
 
 function allDestinations(req, res) {
-  Destination.find(function(err,results){
+  Destination.find({userId: req.user._id}, function(err,results){
     if(err){return console.log(err)};
     res.json(results);
   })
@@ -17,6 +17,7 @@ function createDestination(req, res) {
 
   console.log(req.body);
   var newDestination = new Destination({
+    userId:req.user._id,
     organizer: req.body.organizer,
     location: req.body.location,
     date: req.body.date,
