@@ -124,7 +124,12 @@ $(document).ready(function(){
             destination.splice(i,1);
             break;};
           }
+          if(destination.length === 0){
+            reload();
+              $('#noPlans').text('You currently have no destinations, please use the Plan Trip button to get started.');
+          }else{
           reload();
+        }
         },
         error: function(a,b,c){
           console.log(a,b,c)
@@ -149,6 +154,7 @@ $(document).ready(function(){
     });
 
     function reload(){
+       $('#noPlans').text('');
        $('#htmlTarget').empty();
        $('#htmlTarget').append(getDestinationHTML(destination))
        $('.modal-backdrop').remove();
@@ -157,11 +163,11 @@ $(document).ready(function(){
     function handleSuccess(response){
       destination=response;
       console.log(destination);
-      if(destination < 1){
+      if(destination.length === 0){
           $('#noPlans').text('You currently have no destinations, please use the Plan Trip button to get started.');
       } else {
           $('#noPlans').text('');
-          reload();  
+          reload();
       }
     }
 
