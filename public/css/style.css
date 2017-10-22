@@ -5,12 +5,6 @@ body{
   background-position: cover;
 }
 
-.mainInfo{
-  background-color: rgba(255,255,255,0.7);
-  border-radius: 10px;
-  margin-top:10px;
-}
-
 #createTrip{
   padding: 20px;
 }
@@ -106,10 +100,6 @@ html, body {
 
 
 
-.col-md-12{
-  background-color: white;
-  opacity:.7;
-}
 
 
 html {
@@ -117,66 +107,39 @@ html {
   min-height: 100%;
 }
 
-body {
-  margin-bottom: 150px;
-}
-
 .footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 80px;
+  height: 55px;
   background-color: rgba(0,0,0,0.4);
   text-align: center;
 }
 
 .container{
   margin-top: 20px;
-  color: #fff;
   width: 100%;
 }
 
-.fa-twitter {
-    color: #4099FF;
+#container0{
+  width:500px;
+  height:400px;
+  padding-left:50px;
 }
 
-.fa-facebook {
-    color: #3B5998;
+#buttonDiv{
+  display: inline-block;
 }
 
-.fa-youtube-play {
-    color: #e52d27;
+.deleteBtn{
+  width: 65px;
+  margin-bottom: 10px;
 }
 
-.fa-rss {
-    color: #FF6600;
-}
-
-.fa-vine {
-    color: #00a478;
-}
-
-.fa-flickr {
-    color: #ff0084;
-}
-
-.fa-twitch {
-    color: #6441A5;
-}
-
-.fa-linkedin {
-    color: #007bb6;
-}
-
-.fa {
-    opacity: 0.5;
-    transition: 1s;
-    -webkit-transition: 1s;
-    padding-bottom:40px;
-}
-
-.fa:hover{
-    opacity: 1;
-    transition: 1s;
-    -webkit-transition: 1s;
+#infoBox{
+  background-color: white;
+  margin-bottom: 45px;
+  width: 400px;
+  border-radius: 8px;
+  box-shadow: 6px 6px 6px dimgrey;
 }

@@ -96,7 +96,6 @@ $(document).ready(function(){
 
    $("#createTrip").on("submit", function(event){
       event.preventDefault();
-      alert("BANG")
       console.log($(this).serialize());
       $.ajax({
         method: "POST",
@@ -174,8 +173,7 @@ $(document).ready(function(){
         console.log(destination);
         renderedHTML += `
                 <div class="row">
-                <div class = "container col-md-6 col-md-offset-3 mainInfo">
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-8 col-md-offset-2" id="infoBox">
                 <h3>${destination.organizer}</h3>
                 <!------------------------------------------------------------------------------------------------------------------------!>
                 <div class="col-md-12">
@@ -202,11 +200,9 @@ $(document).ready(function(){
          renderedHTML +=
          `</ul>
          </div>
-         <div class="col-md-4 col-md-offset-4">
-         <button type="button" class="deleteBtn btn btn-success col-md-12" data-toggle="modal" data-target="#${destination._id}">Edit</button>
-         </div>
-         <div class="col-md-4 col-md-offset-4">
-         <button type="button" class="deleteBtn btn btn-danger col-md-12" data-id="${destination._id}">Delete</button>
+         <div id="buttonDiv">
+             <button type="button" class="deleteBtn btn btn-success" data-toggle="modal" data-target="#${destination._id}">Edit</button>
+             <button type="button" class="deleteBtn btn btn-danger" data-id="${destination._id}">Delete</button>
          </div>
          </div>
          <div id="${destination._id}" class="modal fade" role="dialog" >
@@ -244,7 +240,6 @@ $(document).ready(function(){
 
                  </div>
              </div>
-         </div>
          </div>
          </div>
          </div>
