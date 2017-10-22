@@ -1,8 +1,9 @@
 body{
-  background-image: url("./../images/travel8.jpeg");
+/*  background-image: url("./../images/louvre.jpg");*/
   background-repeat: none;
   background-size: cover;
   background-position: cover;
+  background-color:#ECF0F1;
 }
 
 #createTrip{
