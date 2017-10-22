@@ -157,7 +157,12 @@ $(document).ready(function(){
     function handleSuccess(response){
       destination=response;
       console.log(destination);
-      reload();
+      if(destination < 1){
+          $('#noPlans').text('You currently have no destinations, please use the Plan Trip button to get started.');
+      } else {
+          $('#noPlans').text('');
+          reload();  
+      }
     }
 
     function handleError(error){

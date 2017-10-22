@@ -1,14 +1,12 @@
 body{
- /* background-image: url("./../images/grey.jpg");
-  background-color: black;
+  background-image: url("./../images/airplane.jpg");
   background-repeat: none;
   background-size: cover;
-  background-position: cover;*/
-  background: #e6e6e6;
+  background-position: cover;
 }
 
 #myCarousel{
-  box-shadow: 10px 10px 5px #888888;
+  /*box-shadow: 8px 8px 4px black;*/
   margin-bottom: 50px;    
 }
 
@@ -18,6 +16,15 @@ body{
 
 #createTrip{
   padding: 20px;
+}
+
+.navbar-default{
+  opacity: 0.5;
+  border-color: #9e8ab4;
+}
+
+.navbar-brand{
+  font-size: 21px;
 }
 
 .pac-container {
