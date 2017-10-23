@@ -1,8 +1,8 @@
-Project 01: Dream Travel
+Project 01: Dream Trip
 ===================
 
 
-**Dream Travel** is a planning and organizing web based application for your traveling needs.
+**Dream Trip** is a planning and organizing web based application for your traveling needs.
 
 
 ----------
