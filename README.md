@@ -3,6 +3,7 @@ Project 01: DreamTrip
 
 
 **DreamTrip** is a planning and organizing web based application for your traveling needs.
+Visit DreamTrip today https://dreamtrip.herokuapp.com/
 
 
 ----------
@@ -47,7 +48,7 @@ Technologies
 
 ----------
 
-  
+
 Existing Features
 -------------------
 * User Authentication.
@@ -63,8 +64,3 @@ Planned Features
 -------------------
 * Be able to share destinations between users.
 * Integrate Google maps API locations/markers into a destination's plans.
-
-
-
-
-

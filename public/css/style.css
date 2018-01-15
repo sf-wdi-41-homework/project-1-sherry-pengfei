@@ -9,7 +9,7 @@ body{
 
 #myCarousel{
   /*box-shadow: 8px 8px 4px black;*/
-  margin-bottom: 50px;    
+  margin-bottom: 50px;
 }
 
 /*#carouselStart{
@@ -179,16 +179,4 @@ html {
 }
 h6{
   color:white;
-}
-/*#slide{
-
-  width:400px;
-  height:400px;
-}
-*/
-
-img{
-
-  width:800px;
-  height:600px;
 }
